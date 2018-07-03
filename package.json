@@ -1,0 +1,25 @@
+{
+  "name": "hangman",
+  "version": "1.0.0",
+  "description": "Hangman JS Game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/estigmata/hangman.git"
+  },
+  "keywords": [
+    "JavaScript"
+  ],
+  "author": "Nestor Otondo <nestor.otondo@fundacion-jala.org>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/estigmata/hangman/issues"
+  },
+  "homepage": "https://github.com/estigmata/hangman#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
