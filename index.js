@@ -1,25 +1,26 @@
 const express = require('express')
-const app = express()
-const Dictionary = require('./src/Dictionary')
-Dictionary.getWord().then(word => console.log('word: ', word))
 
-app.get('/', (req, res) => res.send('Hello World!'))
+const Dictionary = require('./src/dictionary')
+const Game = require('./src/game')
+
+const app = express()
+let wordGuess
+let id = 25
+
+Dictionary.getWord().then(word => wordGuess = word)
+
+app.get('/', (req, res) => res.send(wordGuess))
 
 app.get('/game', (req, res) => {
-  res.send({
-    id: 1,
-    hint: '_____A',
-    remainings: 5,
-    image: `
- _______
-|/      |
-|      (_)
-|      \|/
-|       |
-|      / \\n
-|
-|___`
-  })
+  Game.create({id: id, guess: wordGuess})
+    .then(game => {
+      res.send(game)
+    })
+    .catch(err => {
+      res.status(500).send({
+        error: 'Game could not be created'
+      })
+    })
 })
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'))
