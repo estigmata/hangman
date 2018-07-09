@@ -1,25 +1,43 @@
 const express = require('express')
+const bodyParser = require('body-parser');
 const app = express()
-const Dictionary = require('./src/Dictionary')
-Dictionary.getWord().then(word => console.log('word: ', word))
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => res.send('Hello World!'))
+const Game = require('./src/game.js')
 
 app.get('/game', (req, res) => {
-  res.send({
-    id: 1,
-    hint: '_____A',
-    remainings: 5,
-    image: `
- _______
-|/      |
-|      (_)
-|      \|/
-|       |
-|      / \\n
-|
-|___`
-  })
+  Game.create(req.query)
+    .then(game => {
+        res.send(game)
+    })
+    .catch(error => {
+        console.error(error)
+        res.status(500).send({
+            error: 'Game could not be created'
+        })
+    })
 })
 
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
+app.post('/game/:gameId/attempt', (req, res) => {
+  const gameId = req.params.gameId
+  const attempt = req.body
+  Game.attempt(gameId, attempt)
+    .then(result => {
+      if (result.isGameOver) {
+        res.status(500).send({
+          error: 'You lose XD'
+        })
+      }
+      if (result.isInvalid) {
+        res.status(400).send(result)
+      }
+    })
+    .catch(error => {
+      console.error(error)
+    })
+})
+
+app.listen(3000, () => {
+    console.log('Example app listening on port 3000!')
+})

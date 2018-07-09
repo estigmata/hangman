@@ -1,0 +1,29 @@
+{
+    "af1f4b46ac33b02362f8fcd0": {
+        "difficulty": "super-easy",
+        "includePunctuation": "true",
+        "maxAttempts": "2",
+        "word": "rila",
+        "hint": "_ i _ _",
+        "leftAttempts": "2",
+        "id": "af1f4b46ac33b02362f8fcd0"
+    },
+    "b50078ef573a683fb32da011": {
+        "difficulty": "easy",
+        "includePunctuation": "false",
+        "maxAttempts": 5,
+        "word": "litigo",
+        "hint": "l _ _ _ _ _",
+        "leftAttempts": 5,
+        "id": "b50078ef573a683fb32da011"
+    },
+    "8742633046a66adbe387c0ed": {
+        "difficulty": "hard",
+        "includePunctuation": "true",
+        "maxAttempts": "7",
+        "word": "renegándolas",
+        "hint": "_ _ _ _ _ _ _ _ _ _ _ s",
+        "leftAttempts": "7",
+        "id": "8742633046a66adbe387c0ed"
+    }
+}
